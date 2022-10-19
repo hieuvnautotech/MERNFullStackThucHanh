@@ -1,7 +1,35 @@
-export const getPosts = (req, res) => { 
-    res.send('Controller success')
+import { PostModel } from "../models/PostModel.js"
+
+export const getPosts = async(req, res) => { 
+    // res.send('Controller success')
+    try { 
+        const posts = await PostModel.find()
+        console.log('posts', posts);
+        res.status(200).json(posts);
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
 }
 
-export const createPosts = (req, res) => { 
-    res.send('Create post successfully')
+export const createPosts = async (req, res) => { 
+    // res.send('Create post successfully')
+    try { 
+        const newPost = req.body
+        const post = new PostModel(newPost)
+        await post.save()
+        res.status(200).json(post)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
 }
+
+export const updatePosts = async (req, res) => {
+  // res.send('Create post successfully')
+  try {
+    const updatePost = req.body;
+      const post = await PostModel.findOneAndUpdate({ _id: updatePost._id }, updatePost, {new: true});
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};

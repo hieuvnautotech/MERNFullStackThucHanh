@@ -8,6 +8,11 @@ import FileBase64 from "react-file-base64";
 
 
 export default function CreatePostModal() {
+    const [data, setData] = React.useState({
+        title: '',
+        content: '',
+        attachment:''
+    })
     const classes = useStyles();
 
     const dispatch = useDispatch()
@@ -20,23 +25,23 @@ export default function CreatePostModal() {
             className={classes.title}
             required
             label="Title"
-            value=""
-                    onChange={{}}
+            value={data.title}
+            onChange={(e) => setData({ ...data, title: e.target.value })}
           />
           <TextareaAutosize
             className={classes.textarea}
             minRows={10}
             maxRows={15}
             placeholder="Content..."
-            value=""
-                    onChange={{}}
+            value={data.content}
+            onChange={(e) => setData({ ...data, content: e.target.value })}
           />
           <FileBase64
-            accept="image/*"
-            multiple={false}
-            type="file"
-            value=""
-            // onDone={({ base64 }) => setData({ ...data, attachment: base64 })}
+                    accept="image/*"
+                    multiple={false}
+                    type="file"
+                    value={ data.attachment}
+            onDone={({ base64 }) => setData({ ...data, attachment: base64 })}
           />
           <div className={classes.footer}>
             <Button
@@ -44,7 +49,7 @@ export default function CreatePostModal() {
               color="primary"
               component="span"
               fullWidth
-                        onClick={{}}
+              onClick={{}}
             >
               Create
             </Button>

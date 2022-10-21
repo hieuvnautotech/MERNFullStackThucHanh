@@ -15,7 +15,18 @@ export default function CreatePostModal() {
     })
     const classes = useStyles();
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  
+  const { isShow } = useSelector(modalState$);
+  console.log({ isShow });
+
+  const onClose = React.useCallback(() => {
+    dispatch(hideModal());
+  }, [dispatch]);
+
+  const onSubmit = React.useCallback(() => {
+    console.log('[data]',{ data });
+  }, [data]);
     const body = (
       // <p>this is body modal</p>
       <div className={classes.paper} id="simple-modal-title">
@@ -49,7 +60,7 @@ export default function CreatePostModal() {
               color="primary"
               component="span"
               fullWidth
-              onClick={{}}
+              onClick={onSubmit}
             >
               Create
             </Button>
@@ -57,12 +68,6 @@ export default function CreatePostModal() {
         </form>
       </div>
     );
-    const { isShow } = useSelector(modalState$);
-    console.log({ isShow })
-    
-    const onClose = React.useCallback(() => {
-      dispatch(hideModal());
-    }, [dispatch]);
     
   return (
     <div>

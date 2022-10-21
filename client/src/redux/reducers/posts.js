@@ -9,14 +9,14 @@ export default function postsReducer(state = INIT_STATE.posts, action) {
           ...state,
           isLoading: true,
         };
-      case getType(getPosts.getPostSuccess):
+      case getType(getPosts.getPostsSuccess):
         // break;
         return {
           ...state,
           isLoading: false,
           data: action.payload,
         };
-      case getType(getPosts.getPostFailure):
+      case getType(getPosts.getPostsFailure):
         // break;
         return {
           ...state,

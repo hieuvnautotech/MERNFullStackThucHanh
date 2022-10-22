@@ -1,5 +1,5 @@
 import { INIT_STATE } from "../../constant";
-import { getPosts, getType, createPost } from "../actions";
+import { getPosts, getType, createPost, updatePost } from "../actions";
 
 export default function postsReducer(state = INIT_STATE.posts, action) { 
     switch (action.type) {
@@ -27,13 +27,13 @@ export default function postsReducer(state = INIT_STATE.posts, action) {
         ...state,
         data: [...state.data, action.payload],
       };
-    // case getType(updatePost.updatePostSuccess):
-    //   return {
-    //     ...state,
-    //     data: state.data.map((post) =>
-    //       post._id === action.payload._id ? action.payload : post
-    //     ),
-    //   };
+    case getType(updatePost.updatePostSuccess):
+      return {
+        ...state,
+        data: state.data.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+      };
       default:
         return state;
     }

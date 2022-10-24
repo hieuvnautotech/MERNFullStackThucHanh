@@ -1,3 +1,4 @@
+import { applyMiddleware } from 'redux';
 import { createActions, createAction } from 'redux-actions'
 
 export const getType = (reduxAction) => { 
@@ -22,11 +23,16 @@ export const createPost = createActions({
     updatePostFailure: (err) => err,
   });
 
-  export const deletePost = createActions({
-    updatePostRequest: undefined,
-    updatePostSuccess: (payload) => payload,
-    updatePostFailure: (err) => err,
-  });
+  export const deletePost = (id) => async (dispatch) => {
+    try{
+        await api.deletePost(id)
+    }catch(error){
+
+    }
+  }
+    
+    
+  
 
 export const showModal = createAction("SHOW_CREATE_POST_MODAL");
 export const hideModal = createAction("HIDE_CREATE_POST_MODAL");

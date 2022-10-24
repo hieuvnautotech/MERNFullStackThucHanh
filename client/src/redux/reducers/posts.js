@@ -35,12 +35,10 @@ export default function postsReducer(state = INIT_STATE.posts, action) {
         ),
       };
 
-      case getType(deletePost.deletePostSuccess):
+      case getType(deletePost.deletePostRequest):
       return {
-        ...state,
-        data: state.data.map((post) =>
-          post._id === action.payload._id ? action.payload : post
-        ),
+        data: state.data.filter((post) => post._id ===! action.payload),
+        // state: console.log("delete post reducer"),
       };
       default:
         return state;

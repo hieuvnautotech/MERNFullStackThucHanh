@@ -11,12 +11,15 @@ import{
 } from '@material-ui/core'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import DeleteIcon from '@material-ui/icons/Delete'
 import moment from 'moment'
 import useStyles from './styles.js'
 import { useDispatch } from 'react-redux'
 import { updatePost } from '../../../redux/actions'
+import { deletePost } from '../../../redux/actions'
 
 export default function Post({post}) {
+    
     const classes = useStyles()
     const dispatch = useDispatch()
     const onLikeBtnClick = React.useCallback(() => {
@@ -24,6 +27,15 @@ export default function Post({post}) {
           updatePost.updatePostRequest({ ...post, likeCount: post.likeCount + 1 })
         );
       }, [dispatch, post]);
+
+    const deleteBtnClick = () => {
+        console.log('[id_delete]', post._id)
+        dispatch(
+            deletePost(post._id)
+            
+          );
+      }
+
   return (
     <Card>
         <CardHeader
@@ -47,6 +59,10 @@ export default function Post({post}) {
             <IconButton onClick={onLikeBtnClick}>
                 <FavoriteIcon/>
                 <Typography component='span' color='textSecondary'>{post.likeCount}</Typography>
+            </IconButton>
+            <IconButton onClick={deleteBtnClick}>
+                <DeleteIcon/>
+                <Typography component='span' color='textSecondary'>Delete</Typography>
             </IconButton>
         </CardActions>
     </Card>

@@ -37,9 +37,9 @@ export const updatePosts = async (req, res) => {
 export const deletePosts = async (req, res) => {
   // res.send('Create post successfully')
   try {
-    const deletePost = req.body;
-      const post = await PostModel.findByIdAndDelete({ _id: deletePost._id }, deletePost, {new: true});
-    res.status(200).json(post);
+    const {id} = req.params;
+    await PostModel.findByIdAndRemove(id);
+    res.status(200).json({message: 'delete post successfully'});
   } catch (err) {
     res.status(500).json({ error: err });
   }

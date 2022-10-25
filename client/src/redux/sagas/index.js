@@ -40,15 +40,15 @@ function* updatePostSaga(action) {
   }
 }
 
-// function* editPostSaga(action) {
-//   try {
-//     const editPost = yield call(api.updatePost, action.payload);
-//     yield put(actions.updatePost.updatePostSuccess(updatedPost.data));
-//   } catch (err) {
-//     console.error(err);
-//     yield put(actions.updatePost.updatePostFailure(err));
-//   }
-// }
+function* editPostSaga(action) {
+  try {
+    const editPost = yield call(api.editPost, action.payload._id);
+    yield put(actions.editPost.editPostSuccess(editPost.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.updatePost.updatePostFailure(err));
+  }
+}
 
 function* deletePostSaga(action) {
   try {
@@ -65,6 +65,7 @@ function* mySaga() {
   yield takeLatest(actions.createPost.createPostRequest, createPostSaga);
   yield takeLatest(actions.updatePost.updatePostRequest, updatePostSaga);
   yield takeLatest(actions.deletePost.deletePostRequest, deletePostSaga);
+  yield takeLatest(actions.editPost.editPostRequest, editPostSaga);
 }
 
 export default mySaga;

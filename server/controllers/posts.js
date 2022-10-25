@@ -1,5 +1,5 @@
 import { PostModel } from "../models/PostModel.js"
-
+import mongoose from "mongoose";
 export const getPosts = async(req, res) => { 
     // res.send('Controller success')
     try { 
@@ -37,10 +37,13 @@ export const updatePosts = async (req, res) => {
 export const editPosts = async (req, res) => {
   // res.send('Create post successfully')
   try {
+    const { id: _id} = req.params
     const editPost = req.body;
-    const post = await PostModel.findOneAndUpdate(
-      { _id: editPost._id },
-      editPost,
+    // console.log("editPost hehe")
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that id")
+    const post = await PostModel.findByIdAndUpdate(
+      _id,
+      { ...editPost, _id },
       { new: true }
     );
     res.status(200).json(post);

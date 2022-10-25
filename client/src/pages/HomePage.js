@@ -4,9 +4,11 @@ import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles'
 import Header from "../components/Header";
 import PostList from "../components/PostList";
+// import PostList from "../components/PostList";
 import { useDispatch } from "react-redux";
 import { showModal } from "../redux/actions";
-import CreatePostModal from '../components/CreatePostModal'
+import CreatePostModal from "../components/CreatePostModal";
+import EditPostModal from "../components/EditPostModal";
 
 
 export default function HomePage() {
@@ -20,7 +22,9 @@ export default function HomePage() {
     <Container maxWidth="lg">
       <Header />
       <PostList />
-      <CreatePostModal/>
+      <CreatePostModal />
+      {/* key={post._id} post={post} */}
+      <EditPostModal />
       <Fab
         color="primary"
         className={classes.fab}

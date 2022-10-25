@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", getPosts);
 router.post("/", createPosts);
 router.post("/update", updatePosts);
-router.put("/edit", editPosts);
+router.put("/edit/:id", editPosts);
 router.delete("/:id", deletePosts);
 
 export default router

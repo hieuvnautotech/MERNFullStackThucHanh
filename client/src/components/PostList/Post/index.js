@@ -15,12 +15,21 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import moment from "moment";
 import useStyles from "./styles.js";
 import { useDispatch } from "react-redux";
-import { updatePost } from "../../../redux/actions";
-import { deletePost } from "../../../redux/actions";
+import {
+  updatePost,
+  deletePost,
+  editPost,
+  editModal,
+} from "../../../redux/actions";
+
+
 
 export default function Post({ post }) {
+
   const classes = useStyles();
+
   const dispatch = useDispatch();
+  
   const onLikeBtnClick = React.useCallback(() => {
     dispatch(
       updatePost.updatePostRequest({ ...post, likeCount: post.likeCount + 1 })
@@ -30,6 +39,10 @@ export default function Post({ post }) {
   const deleteBtnClick = React.useCallback(() => {
     dispatch(deletePost.deletePostRequest({ ...post }));
   }, [dispatch, post]);
+   
+  const openEditPostModal = React.useCallback(() => {
+    dispatch(editModal());
+  }, [dispatch]);
 
   return (
     <Card>
@@ -40,7 +53,7 @@ export default function Post({ post }) {
         // subHeader='Apr 30, 2021'
         subheader={moment(post.updateAt).format("HH:MM MMM DD, YYYY")}
         action={
-          <IconButton>
+          <IconButton onClick={openEditPostModal}>
             <MoreVertIcon />
           </IconButton>
         }

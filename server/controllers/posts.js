@@ -34,11 +34,26 @@ export const updatePosts = async (req, res) => {
   }
 };
 
+export const editPosts = async (req, res) => {
+  // res.send('Create post successfully')
+  try {
+    const editPost = req.body;
+    const post = await PostModel.findOneAndUpdate(
+      { _id: editPost._id },
+      editPost,
+      { new: true }
+    );
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
 export const deletePosts = async (req, res) => {
   // res.send('Create post successfully')
   try {
     const {id} = req.params;
-    await PostModel.findByIdAndRemove(id);
+    await PostModel.findByIdAndRemove({ id }, { new: true });
     res.status(200).json({message: 'delete post successfully'});
   } catch (err) {
     res.status(500).json({ error: err });

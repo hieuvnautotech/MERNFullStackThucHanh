@@ -23,13 +23,17 @@ export const createPost = createActions({
     updatePostFailure: (err) => err,
   });
 
-  export const deletePost = (id) => async (dispatch) => {
-    try{
-        await api.deletePost(id)
-    }catch(error){
+  // export const editPost = createActions({
+  //   updatePostRequest: (payload) => payload,
+  //   updatePostSuccess: (payload) => payload,
+  //   updatePostFailure: (err) => err,
+  // });
 
-    }
-  }
+export const deletePost = createActions({
+  deletePostRequest: (payload) => payload,
+  deletePostSuccess: undefined,
+  deletePostFailure: (err) => err,
+});
     
     
   

@@ -18,8 +18,8 @@ import { useDispatch } from "react-redux";
 import {
   updatePost,
   deletePost,
-  // editPost,
-  // editModal,
+  editPost,
+  editModal,
 } from "../../../redux/actions";
 
 
@@ -38,13 +38,14 @@ export default function Post({ post }) {
 
   const deleteBtnClick = React.useCallback(() => {
     console.log("nut nhan delete")
-    dispatch(deletePost.deletePostRequest({...post }));
-    // dispatch(deletePost.deletePostRequest({...post, _id: post._id, }));
+    // dispatch(deletePost.deletePostRequest({...post }));
+    dispatch(deletePost.deletePostRequest({_id: post._id}));
   }, [dispatch, post]);
    
   const openEditPostModal = React.useCallback(() => {
-    // dispatch(editModal());
-  }, [dispatch]);
+    dispatch(editModal({ _id: post._id }));
+    dispatch(editPost.editPostRequest({ _id: post._id }));
+  }, [dispatch, post]);
 
   return (
     <Card>

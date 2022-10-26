@@ -23,11 +23,11 @@ export const createPost = createActions({
     updatePostFailure: (err) => err,
   });
 
-  // export const editPost = createActions({
-  //   editPostRequest: (payload) => payload,
-  //   editPostSuccess: (payload) => payload,
-  //   editPostFailure: (err) => err,
-  // });
+  export const editPost = createActions({
+    editPostRequest: (payload) => payload,
+    editPostSuccess: (payload) => payload,
+    editPostFailure: (err) => err,
+  });
 
 export const deletePost = createActions({
   deletePostRequest: (payload) => payload,
@@ -37,6 +37,6 @@ export const deletePost = createActions({
     
     
   
-// export const editModal = createAction("SHOW_EDIT_POST_MODAL");
+export const editModal = createAction("SHOW_EDIT_POST_MODAL");
 export const showModal = createAction("SHOW_CREATE_POST_MODAL");
 export const hideModal = createAction("HIDE_CREATE_POST_MODAL");

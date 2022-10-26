@@ -1,5 +1,5 @@
 import { INIT_STATE } from "../../constant";
-import { getType, showModal, hideModal } from "../actions";
+import { getType, showModal, hideModal, editModal } from "../actions";
 
 export default function modalReducer(state = INIT_STATE.modal, action) {
   switch (action.type) {
@@ -13,11 +13,15 @@ export default function modalReducer(state = INIT_STATE.modal, action) {
       return {
         isShow: false,
       };
-    // case getType(editModal):
-    //   // break;
-    //   return {
-    //     isShow: true,
-    //   };
+    case getType(editModal):
+      // break;
+      console.log("vào edit modal")
+      console.log(action);
+      INIT_STATE.modal._id = action.payload._id;
+      return {
+        ...state,
+        isShow: true,
+      };
 
     default:
       return state;

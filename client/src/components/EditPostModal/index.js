@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
 import { Button, Modal, TextareaAutosize, TextField } from "@material-ui/core";
-import { useSelector, useDispatch } from 'react-redux'
-import { modalState$} from '../../redux/selectors'
+import { useSelector, useDispatch } from "react-redux";
+import { postsState$, modalState$ } from "../../redux/selectors";
 import useStyles from "./styles";
-import {  hideModal } from "../../redux/actions";
+import { editModal, hideModal } from "../../redux/actions";
 import FileBase64 from "react-file-base64";
 
+export default function EditPostModal(props) {
+  console.log("[PostList-posts-editModal]", props); //data lấy từ be bằng saga đã lưu trong state
 
-export default function EditPostModal({ post }) {
   const [data, setData] = React.useState({
     title: "",
     content: "",
@@ -17,8 +18,8 @@ export default function EditPostModal({ post }) {
 
   const dispatch = useDispatch();
 
-  const { isShow } = useSelector(modalState$);
-  console.log({ isShow });
+  const { isShow, _id } = useSelector(modalState$);
+  console.log(isShow, _id);
 
   const onClose = React.useCallback(() => {
     dispatch(hideModal());

@@ -7,7 +7,9 @@ import { postsState$ } from "../../redux/selectors";
 
 export default function PostList() {
   const dispatch = useDispatch();
+
   const posts = useSelector(postsState$);
+  
   console.log("[PostList-posts]", posts); //data lấy từ be bằng saga đã lưu trong state
 
 

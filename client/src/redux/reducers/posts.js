@@ -5,7 +5,7 @@ import {
   createPost,
   updatePost,
   deletePost,
-  // editPost,
+  editPost,
 } from "../actions";
 //posts khởi tạo lúc đầu rỗng, có 2 field là data vs isLoading
 // sau đó posts lấy từ be qua saga truyền vào reducer, tham chiếu với loại action rồi gán vào posts
@@ -43,13 +43,13 @@ export default function postsReducer(state = INIT_STATE.posts, action) {
         ),
       };
 
-    // case getType(editPost.editPostRequest):
-    //   return {
-    //     ...state,
-    //     data: state.data.map((post) =>
-    //       post._id === action.payload._id ? action.payload : post
-    //     ),
-    //   };
+    case getType(editPost.editPostSuccess):
+      return {
+        ...state,
+        data: state.data.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+      };
 
     // case getType(deletePost.deletePostRequest):
     //   return {

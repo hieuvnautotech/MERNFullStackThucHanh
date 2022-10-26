@@ -4,13 +4,13 @@ import { createActions, createAction } from 'redux-actions'
 export const getType = (reduxAction) => { 
     return reduxAction().type
 }
-
+// vì get data từ be thì khi request ko cần gừi gì trong body lên
 export const getPosts = createActions({
-    getPostsRequest: undefined,
+    getPostsRequest: undefined, 
     getPostsSuccess: (payload) => payload,
     getPostsFailure: (err) => err
 })
-
+// vì khi post data từ UI iu cầu tạo mới ở be thì cần gừi trong body nên request phải có payload
 export const createPost = createActions({
     createPostRequest: (payload) => payload,
     createPostSuccess: (payload) => payload,
@@ -23,20 +23,20 @@ export const createPost = createActions({
     updatePostFailure: (err) => err,
   });
 
-  export const editPost = createActions({
-    editPostRequest: (payload) => payload,
-    editPostSuccess: (payload) => payload,
-    editPostFailure: (err) => err,
-  });
+  // export const editPost = createActions({
+  //   editPostRequest: (payload) => payload,
+  //   editPostSuccess: (payload) => payload,
+  //   editPostFailure: (err) => err,
+  // });
 
 export const deletePost = createActions({
   deletePostRequest: (payload) => payload,
-  deletePostSuccess: undefined,
+  deletePostSuccess: (payload) => payload,
   deletePostFailure: (err) => err,
 });
     
     
   
-export const editModal = createAction("SHOW_EDIT_POST_MODAL");
+// export const editModal = createAction("SHOW_EDIT_POST_MODAL");
 export const showModal = createAction("SHOW_CREATE_POST_MODAL");
 export const hideModal = createAction("HIDE_CREATE_POST_MODAL");

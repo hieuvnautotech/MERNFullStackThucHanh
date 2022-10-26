@@ -18,8 +18,8 @@ import { useDispatch } from "react-redux";
 import {
   updatePost,
   deletePost,
-  editPost,
-  editModal,
+  // editPost,
+  // editModal,
 } from "../../../redux/actions";
 
 
@@ -32,16 +32,18 @@ export default function Post({ post }) {
   
   const onLikeBtnClick = React.useCallback(() => {
     dispatch(
-      updatePost.updatePostRequest({ ...post, likeCount: post.likeCount + 1 })
+      updatePost.updatePostRequest({ ...post, likeCount: post.likeCount + 1 }) // tham số 1 là clone cái prop post, tham số 2 chỉ truyền cái post có field likeCount
     );
-  }, [dispatch, post]);
+  }, [dispatch, post]); // vì gọi post là prop từ phía bên ngoài nên phải khai báo vào array dependencies
 
   const deleteBtnClick = React.useCallback(() => {
-    dispatch(deletePost.deletePostRequest({ ...post }));
+    console.log("nut nhan delete")
+    dispatch(deletePost.deletePostRequest({...post }));
+    // dispatch(deletePost.deletePostRequest({...post, _id: post._id, }));
   }, [dispatch, post]);
    
   const openEditPostModal = React.useCallback(() => {
-    dispatch(editModal());
+    // dispatch(editModal());
   }, [dispatch]);
 
   return (

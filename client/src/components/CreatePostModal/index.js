@@ -8,6 +8,7 @@ import FileBase64 from "react-file-base64";
 
 
 export default function CreatePostModal() {
+  // tạo ra cái state này để lưu trữ lại khi nhập từ form UI để tạo mới 
     const [data, setData] = React.useState({
         title: '',
         content: '',
@@ -31,9 +32,9 @@ export default function CreatePostModal() {
 
   const onSubmit = React.useCallback(() => {
   console.log('[data]',{ data });
-    dispatch(createPost.createPostRequest(data));
+    dispatch(createPost.createPostRequest(data));// truyền cái data cần tạo mới
     onClose();
-  }, [data, dispatch, onClose]);
+  }, [data, dispatch, onClose]); //bỏ data vào array dependencies để khi có sự thay đổi data sẽ dc gán mới nhất vào. dispatch là function bên ngoài nên khi dùng dispatch bên trong callback phải bỏ vào array dependencies 
     const body = (
       // <p>this is body modal</p>
       <div className={classes.paper} id="simple-modal-title">

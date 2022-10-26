@@ -8,7 +8,7 @@ import PostList from "../components/PostList";
 import { useDispatch } from "react-redux";
 import { showModal } from "../redux/actions";
 import CreatePostModal from "../components/CreatePostModal";
-import EditPostModal from "../components/EditPostModal";
+// import EditPostModal from "../components/EditPostModal";
 
 
 export default function HomePage() {
@@ -24,7 +24,7 @@ export default function HomePage() {
       <PostList />
       <CreatePostModal />
       {/* key={post._id} post={post} */}
-      <EditPostModal />
+      {/* <EditPostModal /> */}
       <Fab
         color="primary"
         className={classes.fab}

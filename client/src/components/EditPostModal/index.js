@@ -3,7 +3,7 @@ import { Button, Modal, TextareaAutosize, TextField } from "@material-ui/core";
 import { useSelector, useDispatch } from 'react-redux'
 import { modalState$} from '../../redux/selectors'
 import useStyles from "./styles";
-import { editPost, hideModal } from "../../redux/actions";
+import {  hideModal } from "../../redux/actions";
 import FileBase64 from "react-file-base64";
 
 
@@ -31,7 +31,7 @@ export default function EditPostModal({ post }) {
 
   const onUpdate = React.useCallback(() => {
     console.log("[data-update]", { data });
-    dispatch(editPost.editPostRequest(data));
+    // dispatch(editPost.editPostRequest(data));
     // updatePost.updatePostRequest({ ...post, likeCount: post.likeCount + 1 });
 
     onClose();
